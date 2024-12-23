@@ -22,8 +22,12 @@ while True:
     request = client_connection.recv(1024).decode()
     print(request)
 
+    # get index file
+    with open('index.html', 'r') as file:
+        content = file.read()
+
     # send http response
-    response = "HTTP/1.0 200 OK\n\nHello World"
+    response = "HTTP/1.0 200 OK\n\n" + content
     client_connection.sendall(response.encode())
     client_connection.close()
 
